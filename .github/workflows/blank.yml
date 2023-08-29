@@ -1,0 +1,23 @@
+name: Create Azure Container Registry
+on:
+  push:
+    branches:
+      - main
+      # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  create-acr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate to Azure
+        uses: azure/login@v1
+        with:
+          tenant: c39c12fd-a237-4330-962b-8904a853a473
+          client-id: d20bd556-c49d-47fb-ba4b-cb1012b4cef1
+          client-secret: 73676e4c-1990-49f7-b238-fe55c626bd8b
+      - name: Create Azure Container Registry
+        uses: azure/acr/create@v1
+        with:
+          name: my-acr
+          resource-group: my-resource-group
+     
