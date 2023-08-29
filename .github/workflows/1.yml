@@ -28,6 +28,6 @@ jobs:
         username: aminetry1test
         password: wtWRxNgUB+HGPes+KipZdDuiky+ixcePfow23gubVP+ACRB6KksG
     - run: |
-        docker build . -t aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
-        docker push aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
+        docker build . -t aminetry1test.azurecr.io/aminetry1test:aa
+        docker push aminetry1test.azurecr.io/aminetry1test:aa
     
