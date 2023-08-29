@@ -27,10 +27,7 @@ jobs:
         login-server: aminetry1test.azurecr.io
         username: aminetry1test
         password: wtWRxNgUB+HGPes+KipZdDuiky+ixcePfow23gubVP+ACRB6KksG
- 
-    - name: Build the frontend image and push it to ACR
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
-        file: ./Dockerfile
+    - run: |
+        docker build . -t aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
+        docker push aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
+    
