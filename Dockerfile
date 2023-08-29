@@ -1,4 +1,4 @@
-outputContent="version: '3'
+version: '3'
 services  
 postgres:
     image: postgres:latest
