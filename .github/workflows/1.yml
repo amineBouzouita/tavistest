@@ -24,9 +24,9 @@ jobs:
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
-        client-id: 'd20bd556-c49d-47fb-ba4b-cb1012b4cef1'
-        tenant-id: 'c39c12fd-a237-4330-962b-8904a853a473'
-        subscription-id: 'efa611db-cd08-4b59-8976-3cf7ea377f26'
+        client-id: d20bd556-c49d-47fb-ba4b-cb1012b4cef1
+        tenant-id: c39c12fd-a237-4330-962b-8904a853a473
+        subscription-id: efa611db-cd08-4b59-8976-3cf7ea377f26
         
     - name: 'Docker Login'
       uses: azure/docker-login@v1
