@@ -20,7 +20,14 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
-  
+      
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        client-id: d20bd556-c49d-47fb-ba4b-cb1012b4cef1
+        tenant-id: c39c12fd-a237-4330-962b-8904a853a473
+        subscription-id: efa611db-cd08-4b59-8976-3cf7ea377f26
+        
     - name: 'Docker Login'
       uses: azure/docker-login@v1
       with:
@@ -28,6 +35,14 @@ jobs:
         username: aminetry1test
         password: wtWRxNgUB+HGPes+KipZdDuiky+ixcePfow23gubVP+ACRB6KksG
     - run: |
-        docker build . -t aminetry1test.azurecr.io/aminetry1test:aa
-        docker push aminetry1test.azurecr.io/aminetry1test:aa
+        docker build . -t aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
+        docker push aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'quicklabstuto'
+        images: 'aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}'
+    
+    - name: Azure logout
+      run: |
+        az logout    
     
