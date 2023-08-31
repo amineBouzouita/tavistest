@@ -1,22 +1,14 @@
-# Use the official Nginx image as the base image
-FROM nginx:latest
+# Use the official MySQL image as the base image
+FROM mysql:latest
 
-# Install PHP and other dependencies
-RUN apt-get update && apt-get install -y \
-    php-fpm \
-    && rm -rf /var/lib/apt/lists/*
+# Set environment variables for MySQL configuration (customize as needed)
+ENV MYSQL_ROOT_PASSWORD=rootpass
+ENV MYSQL_DATABASE=mydb
+ENV MYSQL_USER=myuser
+ENV MYSQL_PASSWORD=mypassword
 
-# Remove the default Nginx configuration
-RUN rm /etc/nginx/conf.d/default.conf
+# Expose the default MySQL port
+EXPOSE 3306
 
-# Copy your Nginx server block configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy your PHP files to the appropriate directory
-COPY index.php /var/www/html/
-
-# Expose port 80 to listen for incoming traffic
-EXPOSE 80
-
-# Start Nginx and PHP-FPM
-CMD ["nginx", "-g", "daemon off;"]
+# Define the command to run when the container starts
+CMD ["mysqld"]
