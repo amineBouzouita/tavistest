@@ -1,7 +1,6 @@
 # Use the official MySQL image as the base image
 FROM mysql:latest
-RUN apt-get update && apt-get install -y mysql-client
-
+RUN apt update && apt install -y default-mysql-client
 # Set environment variables for MySQL configuration (customize as needed)
 ENV MYSQL_ROOT_PASSWORD=rootpass
 ENV MYSQL_DATABASE=mydb
