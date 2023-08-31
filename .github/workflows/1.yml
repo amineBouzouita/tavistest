@@ -31,10 +31,4 @@ jobs:
         docker build . -t aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
         docker push aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}
         
-    - name: deploy to azure we app
-      uses: azure/appsevice-action/webapp@master
-      with:
-        app-name: 'quicklabstuto'
-        publish-profile: ${{ secrets.PUBLISH_PROFILE}}
-        images: 'aminetry1test.azurecr.io/aminetry1test:${{ github.sha }}'
-    
+  
