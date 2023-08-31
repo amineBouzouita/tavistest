@@ -10,14 +10,13 @@ RUN apt-get update && apt-get install -y \
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy your Nginx server block configuration
-COPY nginx.conf /etc/nginx/conf.d/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy your PHP files to the appropriate directory
-COPY index.php /var/www/html/
+COPY www/ /var/www/html/
 
 # Expose port 80 to listen for incoming traffic
 EXPOSE 80
 
 # Start Nginx and PHP-FPM
 CMD ["nginx", "-g", "daemon off;"]
-
