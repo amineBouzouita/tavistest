@@ -3,7 +3,7 @@ FROM nginx:latest
 
 # Install PHP and other dependencies
 RUN apt-get update && apt-get install -y \
-    php7.3-fpm \
+    php-fpm \
     && rm -rf /var/lib/apt/lists/*
 
 # Remove the default Nginx configuration
