@@ -9,6 +9,7 @@
     <h1>Hello  ASfvBOCHne</h1>
 </body>
 </html>
+<!--
 <?php
 $servername = "localhost";
 $username = "myuser";
@@ -23,3 +24,4 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 ?>
+-->
