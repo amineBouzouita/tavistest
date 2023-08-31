@@ -18,7 +18,7 @@ CMD ["mysqld"]
 FROM nginx:latest
 
 # Copy the index.html file from your repository to the default Nginx HTML directory
-COPY index.html /usr/share/nginx/html
+COPY index.php /usr/share/nginx/html
 
 # Expose port 80 to listen for incoming traffic
 EXPOSE 80
