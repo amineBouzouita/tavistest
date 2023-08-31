@@ -1,11 +1,17 @@
-# Use the official Nginx image as the base image
-FROM nginx:latest
-
-# Copy the index.html file from your repository to the default Nginx HTML directory
-COPY index.html /usr/share/nginx/html
-
-# Expose port 80 to listen for incoming traffic
-EXPOSE 80
-
-# The CMD instruction defines the command to be run when the container starts
-CMD ["nginx", "-g", "daemon off;"]
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - 3306:3306
