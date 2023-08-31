@@ -13,16 +13,33 @@ EXPOSE 3306
 # Define the command to run when the container starts
 CMD ["mysqld"]
 
-
 # Use the official Nginx image as the base image
 FROM nginx:latest
 
-# Copy the index.html file from your repository to the default Nginx HTML directory
-COPY index.php /usr/share/nginx/html
+# Install PHP and other dependencies
+RUN apt-get update && apt-get install -y \
+    php-fpm \
+    php-mysql \
+    php-gd \
+    php-json \
+    php-curl \
+    php-mbstring
+
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy your Nginx server block configuration
+COPY nginx.conf /etc/nginx/conf.d/
+
+# Copy your PHP-FPM configuration
+COPY php-fpm.conf /etc/php/7.4/fpm/
+
+# Copy your PHP files to the appropriate directory
+COPY index.php /var/www/html/
 
 # Expose port 80 to listen for incoming traffic
 EXPOSE 80
 
-# The CMD instruction defines the command to be run when the container starts
-CMD ["nginx", "-g", "daemon off;"]
+# Start Nginx and PHP-FPM
+CMD service php7.4-fpm start && nginx -g 'daemon off;'
 
