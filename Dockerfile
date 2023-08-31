@@ -13,7 +13,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy your PHP files to the appropriate directory
-COPY www/ /var/www/html/
+COPY index.php /var/www/html/
 
 # Expose port 80 to listen for incoming traffic
 EXPOSE 80
