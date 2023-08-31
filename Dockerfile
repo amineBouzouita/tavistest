@@ -1,51 +1,27 @@
-version: '3'
-services:
-  
-  #PHP Service
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: digitalocean.com/php
-    container_name: app
-    restart: unless-stopped
-    tty: true
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
-    working_dir: /var/www
-    networks:
-      - app-network
 
-  #Nginx Service
-  webserver:
-    image: nginx:alpine
-    container_name: webserver
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - app-network
+# Use the official Nginx image as the base image
+FROM nginx:latest
 
-  #MySQL Service
-  db:
-    image: mysql:5.7.22
-    container_name: db
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    networks:
-      - app-network
+# Copy the index.html file from your repository to the default Nginx HTML directory
+COPY index.html /usr/share/nginx/html
 
-#Docker Networks
-networks:
-  app-network:
-    driver: bridge
+# Expose port 80 to listen for incoming traffic
+EXPOSE 80
+
+# The CMD instruction defines the command to be run when the container starts
+CMD ["nginx", "-g", "daemon off;"]
+
+# Use the official MySQL image as the base image
+FROM mysql:latest
+
+# Set environment variables for MySQL configuration (customize as needed)
+ENV MYSQL_ROOT_PASSWORD=rootpass
+ENV MYSQL_DATABASE=mydb
+ENV MYSQL_USER=myuser
+ENV MYSQL_PASSWORD=mypassword
+
+# Expose the default MySQL port
+EXPOSE 3306
+
+# Define the command to run when the container starts
+CMD ["mysqld"]
