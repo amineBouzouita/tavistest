@@ -1,12 +1,14 @@
 # Use the official Nginx image as the base image
-FROM nginx:latest
+#FROM nginx:latest
 
 # Copy the index.html file from your repository to the default Nginx HTML directory
-COPY index.html /usr/share/nginx/html
+#COPY index.html /usr/share/nginx/html
 
 # Expose port 80 to listen for incoming traffic
-EXPOSE 80
+#EXPOSE 80
 
 # The CMD instruction defines the command to be run when the container starts
-CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"]
 
+FROM php:7.4-apache
+COPY index.html /var/www/html/
