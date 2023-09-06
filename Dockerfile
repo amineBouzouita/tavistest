@@ -1,11 +1,18 @@
-# Use an official Apache HTTP Server image as the base image
-FROM httpd:2.4
+# Use an official PHP image as the base image
+FROM php:apache
 
-# Optionally, copy your web content into the container
-COPY index.html /usr/local/apache2/htdocs
+# Install phpMyAdmin
+RUN apt-get update && apt-get install -y phpmyadmin
 
-# Expose port 80 to allow incoming HTTP traffic
+# Create a symbolic link to phpMyAdmin in the webroot
+RUN ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+
+# Expose port 80 for web traffic
 EXPOSE 80
 
-# Define the entry point for the container
-CMD ["httpd-foreground"]
+# Set environment variables
+ENV PMA_HOST=db
+ENV MYSQL_ROOT_PASSWORD=your_root_password
+
+# Start the Apache web server
+CMD ["apache2-foreground"]
