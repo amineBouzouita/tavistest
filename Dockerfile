@@ -1,14 +1,11 @@
-# Use the official Nginx image as the base image
-#FROM nginx:latest
+# Use an official Apache HTTP Server image as the base image
+FROM httpd:2.4
 
-# Copy the index.html file from your repository to the default Nginx HTML directory
-#COPY index.html /usr/share/nginx/html
+# Optionally, copy your web content into the container
+# COPY index.html /usr/local/apache2/htdocs
 
-# Expose port 80 to listen for incoming traffic
-#EXPOSE 80
+# Expose port 80 to allow incoming HTTP traffic
+EXPOSE 80
 
-# The CMD instruction defines the command to be run when the container starts
-#CMD ["nginx", "-g", "daemon off;"]
-
-FROM php:7.4-apache
-COPY index.html /var/www/html/
+# Define the entry point for the container
+CMD ["httpd-foreground"]
