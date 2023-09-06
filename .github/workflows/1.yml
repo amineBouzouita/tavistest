@@ -28,8 +28,8 @@ jobs:
         username: aminetry1test
         password: wtWRxNgUB+HGPes+KipZdDuiky+ixcePfow23gubVP+ACRB6KksG
     - run: |
-        docker build . -t aminetry1test.azurecr.io/aminetry1test:a
-        docker push aminetry1test.azurecr.io/aminetry1test:a
+        docker build . -t aminetry1test.azurecr.io/aminetry1test:phpmyadmin
+        docker push aminetry1test.azurecr.io/aminetry1test:phpmyadmin
         
 
     - name: Deploy to Azure Web App
@@ -38,4 +38,4 @@ jobs:
       with:
         app-name: quicklabstuto
         publish-profile: ${{ secrets.PUBLISH_PROFILE }}
-        images: 'aminetry1test.azurecr.io/aminetry1test:a'
+        images: 'aminetry1test.azurecr.io/aminetry1test:phpmyadmin'
