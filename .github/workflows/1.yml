@@ -27,7 +27,7 @@ jobs:
           creds: |
             {
               "clientId": "$f2ab5c50-3240-47c4-ace2-8e3d041737b5",
-              "clientSecret": "29992e5f-bee6-4833-b460-31916a2058a0",
+              "clientSecret": "EQE8Q~x2ptqWn6BDc.9UBZQCRaq8pnHXKGtF5ded",
               "subscriptionId": "efa611db-cd08-4b59-8976-3cf7ea377f26",
               "tenantId": "c39c12fd-a237-4330-962b-8904a853a473"
             }
