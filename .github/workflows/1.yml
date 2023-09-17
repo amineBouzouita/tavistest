@@ -26,16 +26,17 @@ jobs:
         with:
           creds: |
             {
-  "clientId": "1257f7a0-afa7-4fdf-982e-aaa8d051cb72",
-  "clientSecret": "zlU8Q~mfNyVip43mWdWlNzq1UIGPb51ZRVVijcDS",
-  "subscriptionId": "efa611db-cd08-4b59-8976-3cf7ea377f26",
-  "tenantId": "c39c12fd-a237-4330-962b-8904a853a473",
-  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
-  "resourceManagerEndpointUrl": "https://management.azure.com/",
-  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
-  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
-  "galleryEndpointUrl": "https://gallery.azure.com/",
-  "managementEndpointUrl": "https://management.core.windows.net/"
-}
+              "clientId": "1257f7a0-afa7-4fdf-982e-aaa8d051cb72",
+              "clientSecret": "zlU8Q~mfNyVip43mWdWlNzq1UIGPb51ZRVVijcDS",
+              "subscriptionId": "efa611db-cd08-4b59-8976-3cf7ea377f26",
+              "tenantId": "c39c12fd-a237-4330-962b-8904a853a473",
+              "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+              "resourceManagerEndpointUrl": "https://management.azure.com/",
+              "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+              "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+              "galleryEndpointUrl": "https://gallery.azure.com/",
+              "managementEndpointUrl": "https://management.core.windows.net/"
+            }
+
       - run: |
            az webapp list --query "[?state=='Running']"
