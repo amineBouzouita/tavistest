@@ -1,18 +1,19 @@
 version: '3'
 services:
-  azure-vote-back:
-    image: mcr.microsoft.com/oss/bitnami/redis:6.0.8
-    container_name: azure-vote-back
-    environment:
-      ALLOW_EMPTY_PASSWORD: "yes"
+  webserver:
+    image: aminetry1test.azurecr.io/aminetry1test:a
     ports:
-        - "6379:6379"
+      - "80:80"
+    depends_on:
+      - database
 
-  azure-vote-front:
-    build: ./azure-vote
-    image: aminetry1test.azurecr.io/azure-vote-front
-    container_name: azure-vote-front
+  database:
+    image: mysql:latest
     environment:
-      REDIS: azure-vote-back
+      MYSQL_ROOT_PASSWORD: example_password
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
     ports:
-        - "80:80"
+      - "3306:3306"
+    
