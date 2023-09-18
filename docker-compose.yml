@@ -1,7 +1,7 @@
 version: '3'
 services:
   webserver:
-    image: nginx:latest
+    image: aminetry1test.azurecr.io/aminetry1test:b
     ports:
       - "80:80"
     depends_on:
