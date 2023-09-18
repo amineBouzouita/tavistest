@@ -40,3 +40,5 @@ jobs:
 
       - run: |
            az webapp list --query "[?state=='Running']"
+           az webapp create --resource-group rsrceGroup --plan ASP-rsrceGroup-a19f --name zazzdzadazd --multicontainer-config-type compose --multicontainer-config-file docker-compose.yml
+
