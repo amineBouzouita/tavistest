@@ -1,0 +1,40 @@
+name: docker_build_push_acr
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  docker_build_push_acr:
+    name: 'Docker Build and Push to ACR'
+    runs-on: ubuntu-latest
+    environment: production
+  
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+  
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+        
+    - name: 'Docker Login'
+      uses: azure/docker-login@v1
+      with:
+        login-server: aminetry1test.azurecr.io
+        username: aminetry1test
+        password: wtWRxNgUB+HGPes+KipZdDuiky+ixcePfow23gubVP+ACRB6KksG
+    - run: |
+        docker build . -t aminetry1test.azurecr.io/aminetry1test:b
+        docker push aminetry1test.azurecr.io/aminetry1test:b
+        
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
+      with:
+        app-name: dockerfileamine
+        publish-profile: ${{ secrets.PUBLISH_PROFILE }}
+        images: 'aminetry1test.azurecr.io/aminetry1test:b'
